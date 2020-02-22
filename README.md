@@ -6,6 +6,10 @@ Autonomous Car for CmpE492 Senior Project.
 
 Not yet.
 
+# Board User Manual
+
+[UM10562 LPC408x/407x User Manual](https://www.nxp.com/docs/en/user-guide/UM10562.pdf)
+
 # Articles Read
 
 - [Autonomous navigation research for mobile robot](https://ieeexplore.ieee.org/document/6357893)
