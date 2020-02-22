@@ -6,9 +6,10 @@ Autonomous Car for CmpE492 Senior Project.
 
 Not yet.
 
-# Board User Manual
+# User Manuals
 
 [UM10562 LPC408x/407x User Manual](https://www.nxp.com/docs/en/user-guide/UM10562.pdf)
+[LPC4088 Experiment Base Board rev A](https://www.embeddedartists.com/wp-content/uploads/2018/06/LPC4088_Experiment_Base_Board_revA.pdf)
 
 # Articles Read
 
