@@ -4,7 +4,10 @@ Autonomous Car for CmpE492 Senior Project.
 
 # Pin Configurations
 
-Not yet.
+## Timer
+
+- Ultrasonic Sensor Trigger - T2_MAT_3 - P0.9 - P11
+- Ultrasonic Sensor Echo - T2_CAP_0 - P0.4 - P34
 
 # User Manuals
 
