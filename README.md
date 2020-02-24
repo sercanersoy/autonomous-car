@@ -14,7 +14,7 @@ Autonomous Car for CmpE492 Senior Project.
 - [UM10562 LPC408x/407x User Manual](https://www.nxp.com/docs/en/user-guide/UM10562.pdf)
 - [LPC4088 QuickStart Board revA](https://os.mbed.com/media/uploads/flirflashlight/lpc4088_quickstart_board_rev_a.pdf)
 - [LPC4088 Experiment Base Board revA](https://www.embeddedartists.com/wp-content/uploads/2018/06/LPC4088_Experiment_Base_Board_revA.pdf)
-- [HC-SR04 Ultrasonic Sensor User Manual](http://web.eece.maine.edu/~zhu/book/lab/HC-SR04%20User%20Manual.pdf)
+- [HC-SR04 Ultrasonic Sensor User Manual](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
 
 # Articles Read
 
