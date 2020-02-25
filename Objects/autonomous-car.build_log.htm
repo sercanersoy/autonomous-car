@@ -21,20 +21,22 @@ Target DLL:      CMSIS_AGDI.dll V1.32.0.0
 Dialog DLL:      TCM.DLL V1.36.5.0
  
 <h2>Project:</h2>
-C:\Users\serca\Documents\autonomous-car\autonomous-car.uvprojx
-Project File Date:  02/22/2020
+C:\Users\serca\Desktop\autonomous-car\autonomous-car.uvprojx
+Project File Date:  02/24/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
 assembling startup_LPC407x_8x_177x_8x.s...
 compiling main.c...
-main.c(6): warning:  #1-D: last line of file ends without a newline
-  }
-main.c: 1 warning, 0 errors
+compiling LED.c...
+compiling ultrasonic_sensor.c...
+ultrasonic_sensor.c(50): warning:  #177-D: variable "i"  was declared but never referenced
+  	int i = 0;
+ultrasonic_sensor.c: 1 warning, 0 errors
 compiling system_LPC407x_8x_177x_8x.c...
 linking...
-Program Size: Code=2008 RO-data=260 RW-data=16 ZI-data=1120  
+Program Size: Code=2852 RO-data=260 RW-data=32 ZI-data=1120  
 ".\Objects\autonomous-car.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -63,10 +65,10 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:1.0.1
       Include file:  Device\Include\system_LPC407x_8x_177x_8x.h
-      Source file:   Device\Source\ARM\startup_LPC407x_8x_177x_8x.s
+      Source file:   Device\Source\system_LPC407x_8x_177x_8x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
       Include file:  Device\Include\LPC407x_8x_177x_8x.h
-      Source file:   Device\Source\system_LPC407x_8x_177x_8x.c
+      Source file:   Device\Source\ARM\startup_LPC407x_8x_177x_8x.s
 Build Time Elapsed:  00:00:00
 </pre>
 </body>

@@ -1,0 +1,7 @@
+--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections
+-I.\RTE\Device\LPC4088FET208
+-I.\RTE\_Target_1
+-IC:\Users\serca\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include
+-IC:\Users\serca\AppData\Local\Arm\Packs\Keil\LPC4000_DFP\2.1.0\Device\Include
+-D__UVISION_VERSION="529" -D_RTE_ -DCORE_M4
+-o .\objects\system_lpc407x_8x_177x_8x.o --omf_browse .\objects\system_lpc407x_8x_177x_8x.crf --depend .\objects\system_lpc407x_8x_177x_8x.d --feedback ".\Objects\autonomous-car.fed" "RTE\Device\LPC4088FET208\system_LPC407x_8x_177x_8x.c"
