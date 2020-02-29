@@ -15,6 +15,7 @@ Autonomous Car for CmpE492 Senior Project.
 - [LPC4088 QuickStart Board revA](https://os.mbed.com/media/uploads/flirflashlight/lpc4088_quickstart_board_rev_a.pdf)
 - [LPC4088 Experiment Base Board revA](https://www.embeddedartists.com/wp-content/uploads/2018/06/LPC4088_Experiment_Base_Board_revA.pdf)
 - [HC-SR04 Ultrasonic Sensor User Manual](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
+- [L298N Motor Driver Manual](http://www.handsontec.com/dataspecs/L298N%20Motor%20Driver.pdf)
 
 # Articles Read
 
