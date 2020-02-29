@@ -6,8 +6,26 @@ Autonomous Car for CmpE492 Senior Project.
 
 ## Timer
 
-- Ultrasonic Sensor Trigger - T2_MAT_3 - P0.9 - P11
-- Ultrasonic Sensor Echo - T2_CAP_0 - P0.4 - P34
+### Ultrasonic Sensor 1
+
+- **Trigger** - T2_MAT_3 - P0.9 - P11
+- **Echo** - T2_CAP_0 - P0.4 - P34
+
+## PWM
+
+### Motor Driver
+
+- **ENA** - PWM0_1 - P1.2 - P30
+- **ENB** - PWM0_2 - P1.3 - P29
+
+## GPIO
+
+### Motor Driver
+
+- **IN1** - P1.24 - P5
+- **IN2** - P1.23 - P6
+- **IN3** - P1.20 - P7
+- **IN4** - P0.21 - P8
 
 # User Manuals
 
