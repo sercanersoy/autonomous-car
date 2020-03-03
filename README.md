@@ -6,22 +6,22 @@ Autonomous Car for CmpE492 Senior Project.
 
 ## Timer
 
-### Ultrasonic Sensor 1
+### Ultrasonic Sensor 0
 
 - **Trigger** - T2_MAT_3 - P0.9 - P11
 - **Echo** - T2_CAP_0 - P0.4 - P34
 
-### Ultrasonic Sensor 2
+### Ultrasonic Sensor 1
 
 - **Trigger** - T2_MAT_2 - P0.8 - P13
 - **Echo** - T2_CAP_1 - P0.5 - P33
 
-### Ultrasonic Sensor 3
+### Ultrasonic Sensor 2
 
 - **Trigger** - T2_MAT_3 - P0.9 - P11
 - **Echo** - T3_CAP_0 - P0.23 - P15
 
-### Ultrasonic Sensor 4
+### Ultrasonic Sensor 3
 
 - **Trigger** - T2_MAT_2 - P0.8 - P13
 - **Echo** - T3_CAP_1 - P0.24 - P16
