@@ -1,35 +1,37 @@
-#ifndef ULTRASONIC_SENSOR_H
-#define ULTRASONIC_SENSOR_H
+#ifndef __ULTRASONIC_SENSOR_H
+#define __ULTRASONIC_SENSOR_H
 
 #include "LPC407x_8x_177x_8x.h"
 #include "LED.h"
 
-#define ULTRASONIC_TIMER									LPC_TIM2
-#define ULTRASONIC_ECHO_IOCON							LPC_IOCON->P0_4
-#define ULTRASONIC_ECHO_GPIO							LPC_GPIO0
-#define ULTRASONIC_ECHO_GPIO_PIN					4
-#define ULTRASONIC_TRIGGER_IOCON					LPC_IOCON->P0_9
-#define ULTRASONIC_TIMER_MR								MR3
-#define ULTRASONIC_TIMER_CR								CR0
-#define ULTRASONIC_TIMER_IRQN							TIMER2_IRQn
-#define ULTRASONIC_TIMER_IRQHANDLER				TIMER2_IRQHandler
-#define ULTRASONIC_ECHO_IOCON_FUNC				3
-#define ULTRASONIC_TRIGGER_IOCON_FUNC			3
-#define ULTRASONIC_TIMER_PCONP_BIT				22
-#define ULTRASONIC_TIMER_MRI_BIT					9
-#define ULTRASONIC_TIMER_MRR_BIT					10
-#define ULTRASONIC_TIMER_EMC_BIT					10
-#define ULTRASONIC_TIMER_CAPRE_BIT				0
-#define ULTRASONIC_TIMER_CAPFE_BIT				1
-#define ULTRASONIC_TIMER_CAPI_BIT					2
-#define ULTRASONIC_TIMER_EM_BIT						3
-#define ULTRASONIC_TIMER_MRINT_BIT				3
-#define ULTRASONIC_TIMER_CRINT_BIT				4
+#define RECOMMENDED_WAITING_MICROSECOND		60000
 
-extern uint32_t current_distance;
-extern uint8_t distance_updated;
+typedef struct {
+	const						uint8_t						id;
+	const						uint8_t						PCONP_bit;
+				volatile	uint32_t*					IOCON_echo;
+				volatile	uint32_t*					IOCON_trig;
+	const						uint8_t						IOCON_echo_func;
+	const						uint8_t						IOCON_trig_func;
+									LPC_TIM_TypeDef*	TIM;
+				volatile	uint32_t*					TIM_MR;
+	const	volatile	uint32_t*					TIM_CR;
+	const						uint8_t						TIM_MRI_bit;
+	const						uint8_t						TIM_MRR_bit;
+	const						uint8_t						TIM_CAPRE_bit;
+	const						uint8_t						TIM_CAPFE_bit;
+	const						uint8_t						TIM_CAPI_bit;
+	const						uint8_t						TIM_EM_bit;
+	const						uint8_t						TIM_EMC_bit;
+	const						uint8_t						TIM_MRINT_bit;
+	const						uint8_t						TIM_CRINT_bit;
+	const	enum			IRQn							TIM_IRQn;
+} Ultrasonic_Sensor_TypeDef;
+
+extern const uint8_t n_sensors;
+extern uint32_t ultrasonic_distance[];
+extern uint8_t ultrasonic_updated[];
 
 void ultrasonic_init(void);
-void ULTRASONIC_TIMER_IRQHANDLER(void);
 
 #endif
