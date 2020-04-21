@@ -2,47 +2,47 @@
 
 Autonomous Car for CmpE492 Senior Project.
 
-# Pin Configurations
+## Pin Configurations
 
-## Timer
+### Timer
 
-### Ultrasonic Sensor 0
+#### Ultrasonic Sensor 0
 
 - **Trigger** - T3_MAT_2 - P5.2 - P32
 - **Echo** - T3_CAP_0 - P0.23 - P15
 
-### Ultrasonic Sensor 1
+#### Ultrasonic Sensor 1
 
 - **Trigger** - T2_MAT_3 - P0.9 - P11
 - **Echo** - T2_CAP_0 - P0.4 - P34
 
-### Ultrasonic Sensor 2
+#### Ultrasonic Sensor 2
 
 - **Trigger** - T2_MAT_3 - P0.9 - P11
 - **Echo** - T2_CAP_1 - P0.5 - P33
 
-### Ultrasonic Sensor 3
+#### Ultrasonic Sensor 3
 
 - **Trigger** - T3_MAT_2 - P5.2 - P32
 - **Echo** - T3_CAP_1 - P0.24 - P16
 
-## PWM
+### PWM
 
-### Motor Driver
+#### Motor Driver
 
 - **ENA** - PWM0_1 - P1.2 - P30
 - **ENB** - PWM0_2 - P1.3 - P29
 
-## GPIO
+### GPIO
 
-### Motor Driver
+#### Motor Driver
 
 - **IN1** - P1.24 - P5
 - **IN2** - P1.23 - P6
 - **IN3** - P1.20 - P7
 - **IN4** - P0.21 - P8
 
-# User Manuals
+## User Manuals
 
 - [UM10562 LPC408x/407x User Manual](https://www.nxp.com/docs/en/user-guide/UM10562.pdf)
 - [LPC4088 QuickStart Board revA](https://os.mbed.com/media/uploads/flirflashlight/lpc4088_quickstart_board_rev_a.pdf)
@@ -50,7 +50,7 @@ Autonomous Car for CmpE492 Senior Project.
 - [HC-SR04 Ultrasonic Sensor User Manual](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
 - [L298N Motor Driver Manual](http://www.handsontec.com/dataspecs/L298N%20Motor%20Driver.pdf)
 
-# Articles Read
+## Articles Read
 
 - [Autonomous navigation research for mobile robot](https://ieeexplore.ieee.org/document/6357893)
 - [Autonomous mobile robot navigation using machine learning](https://ieeexplore.ieee.org/document/6419894)
