@@ -30,7 +30,7 @@ typedef struct {
 
 extern const uint8_t n_sensors;
 extern uint32_t ultrasonic_distance[];
-extern uint8_t ultrasonic_updated[];
+extern uint8_t ultrasonic_updated;
 
 void ultrasonic_init(void);
 

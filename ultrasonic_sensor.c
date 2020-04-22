@@ -2,28 +2,6 @@
 
 Ultrasonic_Sensor_TypeDef ultrasonic0 = {
 	0,
-	22,
-	&LPC_IOCON->P0_4,
-	&LPC_IOCON->P0_9,
-	3,
-	3,
-	LPC_TIM2,
-	&LPC_TIM2->MR3,
-	&LPC_TIM2->CR0,
-	9,
-	10,
-	0,
-	1,
-	2,
-	3,
-	10,
-	3,
-	4,
-	TIMER2_IRQn
-};
-
-Ultrasonic_Sensor_TypeDef ultrasonic1 = {
-	1,
 	23,
 	&LPC_IOCON->P0_23,
 	&LPC_IOCON->P5_2,
@@ -42,6 +20,28 @@ Ultrasonic_Sensor_TypeDef ultrasonic1 = {
 	2,
 	4,
 	TIMER3_IRQn
+};
+
+Ultrasonic_Sensor_TypeDef ultrasonic1 = {
+	1,
+	22,
+	&LPC_IOCON->P0_4,
+	&LPC_IOCON->P0_9,
+	3,
+	3,
+	LPC_TIM2,
+	&LPC_TIM2->MR3,
+	&LPC_TIM2->CR0,
+	9,
+	10,
+	0,
+	1,
+	2,
+	3,
+	10,
+	3,
+	4,
+	TIMER2_IRQn
 };
 
 Ultrasonic_Sensor_TypeDef ultrasonic2 = {
@@ -91,18 +91,18 @@ Ultrasonic_Sensor_TypeDef ultrasonic3 = {
 Ultrasonic_Sensor_TypeDef* ultrasonic[] = {&ultrasonic0, &ultrasonic1, &ultrasonic2, &ultrasonic3};
 const uint8_t n_sensors = sizeof(ultrasonic) / sizeof(Ultrasonic_Sensor_TypeDef*);
 
-Ultrasonic_Sensor_TypeDef* TIM2_using_sensors[] = {&ultrasonic0, &ultrasonic2};
+Ultrasonic_Sensor_TypeDef* TIM2_using_sensors[] = {&ultrasonic1, &ultrasonic2};
 const uint8_t n_TIM2_using_sensors = sizeof(TIM2_using_sensors) / sizeof(Ultrasonic_Sensor_TypeDef*);
 
-Ultrasonic_Sensor_TypeDef* TIM3_using_sensors[] = {&ultrasonic1, &ultrasonic3};
+Ultrasonic_Sensor_TypeDef* TIM3_using_sensors[] = {&ultrasonic0, &ultrasonic3};
 const uint8_t n_TIM3_using_sensors = sizeof(TIM3_using_sensors) / sizeof(Ultrasonic_Sensor_TypeDef*);
 
-uint8_t is_trig_rising[] = {1, 1, 1, 1};
-uint8_t is_echo_rising[] = {1, 1, 1, 1};
+uint8_t is_trig_rising = 0xF; // used as a binary array
+uint8_t is_echo_rising = 0xF; // used as a binary array
 uint32_t last_measurement[] = {0, 0, 0, 0};
 
 uint32_t ultrasonic_distance[] = {0, 0, 0, 0};
-uint8_t ultrasonic_updated[] = {0, 0, 0, 0};
+uint8_t ultrasonic_updated = 0; // used as a binary array
 
 void ultrasonic_init_single(Ultrasonic_Sensor_TypeDef* sensor) {
 	// turn on TIM
@@ -150,7 +150,7 @@ void ultrasonic_init(void) {
 	for (i = 0; i < n_sensors; i++) {
 		ultrasonic_init_single(ultrasonic[i]);
 	}
-	is_trig_rising[0] = 0;
+	is_trig_rising &= ~(1 << 0);
 	start_triggering(ultrasonic[0]);
 }
 
@@ -161,10 +161,7 @@ void ultrasonic_handle_single(Ultrasonic_Sensor_TypeDef* sensor) {
 		// clear interrupt
 		sensor->TIM->IR = (1 << sensor->TIM_MRINT_bit);
 		
-		if (is_trig_rising[sensor->id]) {
-			// do not reset TIM when match occurs
-			//sensor->TIM->MCR &= ~(1 << sensor->TIM_MRR_bit);
-			
+		if ((is_trig_rising & (1 << sensor->id)) != 0) {
 			// set external match pin to start triggering
 			sensor->TIM->EMR |= (1 << sensor->TIM_EM_bit);
 			
@@ -172,28 +169,25 @@ void ultrasonic_handle_single(Ultrasonic_Sensor_TypeDef* sensor) {
 			*sensor->TIM_MR = sensor->TIM->TC + 10;
 			
 			// next is falling
-			is_trig_rising[sensor->id] = 0;
+			is_trig_rising &= ~(1 << sensor->id);
 		} else {
-			// reset TIM when match occurs
-			//sensor->TIM->MCR |= (1 << sensor->TIM_MRR_bit);
-			
 			// go on to next sensor
 			uint8_t next_sensor = sensor->id + 1;
 			if (next_sensor >= n_sensors / 2) {
 				next_sensor = 0;
 			}
 			
-			*ultrasonic[next_sensor]->TIM_MR = ultrasonic[next_sensor]->TIM->TC + RECOMMENDED_WAITING_MICROSECOND / 2;
+			*ultrasonic[next_sensor]->TIM_MR = ultrasonic[next_sensor]->TIM->TC + RECOMMENDED_WAITING_MICROSECOND / (n_sensors / 2);
 			
 			// next is rising
-			is_trig_rising[next_sensor] = 1;
+			is_trig_rising |= (1 << next_sensor);
 		}
 	} else if ((sensor->TIM->IR & (1 << sensor->TIM_CRINT_bit)) != 0) {
 		// capture occurred
 		// clear interrupt
 		sensor->TIM->IR = (1 << sensor->TIM_CRINT_bit);
 		
-		if (is_echo_rising[sensor->id]) {
+		if ((is_echo_rising & (1 << sensor->id)) != 0) {
 			// interrupt on falling edge
 			sensor->TIM->CCR |= (1 << sensor->TIM_CAPFE_bit);
 			sensor->TIM->CCR &= ~(1 << sensor->TIM_CAPRE_bit);
@@ -201,17 +195,17 @@ void ultrasonic_handle_single(Ultrasonic_Sensor_TypeDef* sensor) {
 			last_measurement[sensor->id] = *sensor->TIM_CR;
 			
 			// next is falling
-			is_echo_rising[sensor->id] = 0;
+			is_echo_rising &= ~(1 << sensor->id);
 		} else {
 			// interrupt on rising edge
 			sensor->TIM->CCR &= ~(1 << sensor->TIM_CAPFE_bit);
 			sensor->TIM->CCR |= (1 << sensor->TIM_CAPRE_bit);
 			
 			ultrasonic_distance[sensor->id] = (*sensor->TIM_CR - last_measurement[sensor->id]) / 58;
-			ultrasonic_updated[sensor->id] = 1;
+			ultrasonic_updated |= (1 << sensor->id);
 			
 			// next is rising
-			is_echo_rising[sensor->id] = 1;
+			is_echo_rising |= (1 << sensor->id);
 		}
 	}
 }
