@@ -6,8 +6,8 @@ static q15_t output_weights[MLP_OUTPUT_DIM * MLP_HIDDEN_DIM] = OUTPUT_WEIGHT_X2;
 static q15_t hidden_bias[MLP_HIDDEN_DIM] = HIDDEN_BIAS;
 static q15_t output_bias[MLP_OUTPUT_DIM] = OUTPUT_BIAS;
 
-static q15_t test_input[MLP_INPUT_SIZE * MLP_INPUT_DIM] = INPUT_DATA;
-static uint8_t correct_output[MLP_INPUT_SIZE] = CORRECT_DATA;
+static q15_t test_input[MLP_INPUT_SIZE * MLP_INPUT_DIM] = {INPUT_DATA};
+static uint8_t correct_output[MLP_INPUT_SIZE] = {CORRECT_LABEL};
 
 q15_t hidden[MLP_HIDDEN_DIM];
 q15_t output[MLP_OUTPUT_DIM];

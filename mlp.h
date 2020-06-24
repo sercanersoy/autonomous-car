@@ -5,6 +5,7 @@
 #include "arm_math.h"
 #include "arm_nnfunctions.h"
 #include "ml_util.h"
+#include "mlp_model.h"
 
 #define MLP_INPUT_DIM 					4
 #define MLP_HIDDEN_DIM 					40
