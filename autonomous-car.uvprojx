@@ -300,7 +300,7 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x10000000</StartAddress>
-                <Size>0x1000000</Size>
+                <Size>0x10000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -456,6 +456,16 @@
               <FileName>mlp_model.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\mlp_model.h</FilePath>
+            </File>
+            <File>
+              <FileName>decision_tree.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\decision_tree.c</FilePath>
+            </File>
+            <File>
+              <FileName>dt_model.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\dt_model.h</FilePath>
             </File>
           </Files>
         </Group>

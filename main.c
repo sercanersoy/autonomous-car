@@ -2,12 +2,12 @@
 #include "LED.h"
 #include "motor_driver.h"
 #include "push_button.h"
-#include "mlp.h"
-#include "test_data1.h"
+//#include "mlp.h"
+#include "test_data.h"
 #include "action.h"
 #include "joystick.h"
-#include "svm.h"
-#include <stdio.h>
+//#include "svm.h"
+#include "decision_tree.h"
 
 void init(void) {
 	ultrasonic_init();
@@ -104,12 +104,11 @@ void update(void) {
 
 int main(void) {
 	init();
-	svm_models_init();
 	
-	static float32_t test_input[INPUT_SIZE * VEC_DIM] = {INPUT_DATA};
+	static int16_t test_input[INPUT_SIZE * VEC_DIM] = {INPUT_DATA};
 	static uint8_t correct_output[INPUT_SIZE] = {CORRECT_LABEL};
 	
-	float32_t * pInput = test_input;
+	int16_t * pInput = test_input;
 	uint8_t * pCorrect = correct_output;
 	
 	uint16_t n_true = 0;
@@ -122,15 +121,15 @@ int main(void) {
 	memset(count, 0, VEC_DIM * sizeof(uint16_t));
 	
 	for (int i = 0; i < INPUT_SIZE; i++) {
-		svm_predict((float32_t*) pInput);
+		dt_predict(pInput);
 		pInput += VEC_DIM;
 		
-		if (svm_result == *pCorrect) {
+		if (dt_result == *pCorrect) {
 			n_true++;
-			true_count[svm_result]++;
+			true_count[dt_result]++;
 		}
 		
-		pred_count[svm_result]++;
+		pred_count[dt_result]++;
 		count[*pCorrect++]++;
 	}
 	

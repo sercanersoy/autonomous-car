@@ -5,8 +5,8 @@
 #include "arm_math.h"
 #include "ml_util.h"
 
-#define VEC_DIM 	4
-#define N_CLASSES 4
+#define VEC_DIM		4
+#define N_CLASSES	4
 #define N_MODELS	6
 
 extern int32_t svm_result;
