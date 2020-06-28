@@ -5,7 +5,7 @@
 //#include "mlp.h"
 #include "test_data.h"
 #include "action.h"
-#include "joystick.h"
+//#include "joystick.h"
 //#include "svm.h"
 #include "decision_tree.h"
 
@@ -26,17 +26,26 @@ void handle_ultrasonic_updated_led(uint8_t sensor_no) {
 		led_turn_on(sensor_no);
 }
 
-/*void handle_action_idle() {
-	q15_t input[MLP_INPUT_DIM];
+void handle_action_idle() {
+	// q15_t input[MLP_INPUT_DIM];
+	// 
+	// for (uint8_t i = 0; i < MLP_INPUT_DIM; i++)
+	// 	input[i] = __SSAT(ultrasonic_distance[i], 16);
+	// 
+	// mlp_network_forward(input);
+	// enum Action action_result = (enum Action) argmax_vec_q15(mlp_result, MLP_INPUT_DIM);
+	// 
+	// action_enum_to_action(action_result);
+	int16_t input[n_sensors];
 	
-	for (uint8_t i = 0; i < MLP_INPUT_DIM; i++)
-		input[i] = __SSAT(ultrasonic_distance[i], 16);
+	for (uint8_t i = 0; i < n_sensors; i++)
+		input[i] = (int16_t) ultrasonic_distance[i];
 	
-	mlp_network_forward(input);
-	enum Action action_result = (enum Action) argmax_vec_q15(mlp_result, MLP_INPUT_DIM);
+	dt_predict(input);
+	enum Action action_result = (enum Action) dt_result;
 	
 	action_enum_to_action(action_result);
-}*/
+}
 
 void handle_push_button_pressed(void) {
 	push_button_pressed = 0;
@@ -87,9 +96,9 @@ void update(void) {
 		}
 	}
 	
-	/*if (action_current == ACTION_IDLE) {
+	if (action_current == ACTION_IDLE) {
 		handle_action_idle();
-	}*/
+	}
 	
 	if (push_button_pressed) {
 		handle_push_button_pressed();
@@ -105,36 +114,38 @@ void update(void) {
 int main(void) {
 	init();
 	
-	static int16_t test_input[INPUT_SIZE * VEC_DIM] = {INPUT_DATA};
-	static uint8_t correct_output[INPUT_SIZE] = {CORRECT_LABEL};
-	
-	int16_t * pInput = test_input;
-	uint8_t * pCorrect = correct_output;
-	
-	uint16_t n_true = 0;
-	uint16_t true_count[VEC_DIM];
-	uint16_t pred_count[VEC_DIM];
-	uint16_t count[VEC_DIM];
-	
-	memset(true_count, 0, VEC_DIM * sizeof(uint16_t));
-	memset(pred_count, 0, VEC_DIM * sizeof(uint16_t));
-	memset(count, 0, VEC_DIM * sizeof(uint16_t));
-	
-	for (int i = 0; i < INPUT_SIZE; i++) {
-		dt_predict(pInput);
-		pInput += VEC_DIM;
-		
-		if (dt_result == *pCorrect) {
-			n_true++;
-			true_count[dt_result]++;
-		}
-		
-		pred_count[dt_result]++;
-		count[*pCorrect++]++;
-	}
+	// static int16_t test_input[INPUT_SIZE * VEC_DIM] = {INPUT_DATA};
+	// static uint8_t correct_output[INPUT_SIZE] = {CORRECT_LABEL};
+	// 
+	// int16_t * pInput = test_input;
+	// uint8_t * pCorrect = correct_output;
+	// 
+	// uint16_t n_true = 0;
+	// uint16_t true_count[VEC_DIM];
+	// uint16_t pred_count[VEC_DIM];
+	// uint16_t count[VEC_DIM];
+	// 
+	// memset(true_count, 0, VEC_DIM * sizeof(uint16_t));
+	// memset(pred_count, 0, VEC_DIM * sizeof(uint16_t));
+	// memset(count, 0, VEC_DIM * sizeof(uint16_t));
+	// 
+	// for (int i = 0; i < INPUT_SIZE; i++) {
+	// 	mlp_network_forward(pInput);
+	// 	pInput += VEC_DIM;
+	// 	
+	// 	uint16_t result = argmax_vec_q15(mlp_result, VEC_DIM);
+	// 	
+	// 	if (result == *pCorrect) {
+	// 		n_true++;
+	// 		true_count[result]++;
+	// 	}
+	// 	
+	// 	pred_count[result]++;
+	// 	count[*pCorrect++]++;
+	// }
 	
 	// breakpoint here to see the result in debug
-	float32_t accuracy = (float32_t) n_true / INPUT_SIZE;
+	// float32_t accuracy = (float32_t) n_true / INPUT_SIZE;
 	
 	while(1) {
 		update();

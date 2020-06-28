@@ -4,6 +4,13 @@ Component: ARM Compiler 5.06 update 6 (build 750) Tool: armlink [4d35ed]
 
 Section Cross References
 
+    main.o(i.handle_action_idle) refers to malloc.o(i.malloc) for malloc
+    main.o(i.handle_action_idle) refers to decision_tree.o(i.dt_predict) for dt_predict
+    main.o(i.handle_action_idle) refers to action.o(i.action_enum_to_action) for action_enum_to_action
+    main.o(i.handle_action_idle) refers to malloc.o(i.free) for free
+    main.o(i.handle_action_idle) refers to ultrasonic_sensor.o(.constdata) for n_sensors
+    main.o(i.handle_action_idle) refers to ultrasonic_sensor.o(.bss) for ultrasonic_distance
+    main.o(i.handle_action_idle) refers to decision_tree.o(.data) for dt_result
     main.o(i.handle_push_button_pressed) refers to motor_driver.o(i.motor_both_update_duty_cycle) for motor_both_update_duty_cycle
     main.o(i.handle_push_button_pressed) refers to push_button.o(.data) for push_button_pressed
     main.o(i.handle_push_button_pressed) refers to action.o(.data) for action_current
@@ -20,14 +27,13 @@ Section Cross References
     main.o(i.init) refers to push_button.o(i.push_button_init) for push_button_init
     main.o(i.init) refers to action.o(i.action_init) for action_init
     main.o(i.main) refers to main.o(i.init) for init
-    main.o(i.main) refers to decision_tree.o(i.dt_predict) for dt_predict
     main.o(i.main) refers to main.o(i.update) for update
-    main.o(i.main) refers to main.o(.data) for test_input
-    main.o(i.main) refers to decision_tree.o(.data) for dt_result
     main.o(i.update) refers to main.o(i.handle_ultrasonic_updated_led) for handle_ultrasonic_updated_led
-    main.o(i.update) refers to main.o(i.handle_push_button_pressed) for handle_push_button_pressed
+    main.o(i.update) refers to main.o(i.handle_action_idle) for handle_action_idle
+    main.o(i.update) refers to main.o(i.handle_push_button_pressed_test) for handle_push_button_pressed_test
     main.o(i.update) refers to ultrasonic_sensor.o(.data) for ultrasonic_updated
     main.o(i.update) refers to ultrasonic_sensor.o(.constdata) for n_sensors
+    main.o(i.update) refers to action.o(.data) for action_current
     main.o(i.update) refers to push_button.o(.data) for push_button_pressed
     ultrasonic_sensor.o(i.TIMER2_IRQHandler) refers to ultrasonic_sensor.o(i.ultrasonic_handle_single) for ultrasonic_handle_single
     ultrasonic_sensor.o(i.TIMER2_IRQHandler) refers to ultrasonic_sensor.o(.data) for TIM2_using_sensors
@@ -616,6 +622,38 @@ Section Cross References
     uldiv.o(.text) refers to llushr.o(.text) for __aeabi_llsr
     uldiv.o(.text) refers to llshl.o(.text) for __aeabi_llsl
     ldiv.o(.text) refers to uldiv.o(.text) for __aeabi_uldivmod
+    malloc.o(i.free) refers to mvars.o(.data) for __microlib_freelist
+    malloc.o(i.malloc) refers to mvars.o(.data) for __microlib_freelist_initialised
+    malloc.o(i.malloc) refers to mvars.o(.data) for __microlib_freelist
+    malloc.o(i.malloc) refers to startup_lpc407x_8x_177x_8x.o(HEAP) for __heap_base
+    mallocr.o(i.__free$realloc) refers to mvars.o(.data) for __microlib_freelist
+    mallocr.o(i.__malloc$realloc) refers to mallocr.o(i.internal_alloc) for internal_alloc
+    mallocr.o(i.__malloc$realloc) refers to mvars.o(.data) for __microlib_freelist_initialised
+    mallocr.o(i.__malloc$realloc) refers to startup_lpc407x_8x_177x_8x.o(HEAP) for __heap_base
+    mallocr.o(i.__malloc$realloc) refers to mvars.o(.data) for __microlib_freelist
+    mallocr.o(i.internal_alloc) refers to memmovea.o(.text) for __aeabi_memcpy
+    mallocr.o(i.internal_alloc) refers to mvars.o(.data) for __microlib_freelist
+    mallocr.o(i.realloc) refers to mallocr.o(i.__free$realloc) for __free$realloc
+    mallocr.o(i.realloc) refers to mallocr.o(i.internal_alloc) for internal_alloc
+    mallocr.o(i.realloc) refers to mallocr.o(i.__malloc$realloc) for __malloc$realloc
+    mallocr.o(i.realloc) refers to mvars.o(.data) for __microlib_freelist
+    malloca.o(i.__aligned_malloc) refers to mvars.o(.data) for __microlib_freelist_initialised
+    malloca.o(i.__aligned_malloc) refers to mvars.o(.data) for __microlib_freelist
+    malloca.o(i.__aligned_malloc) refers to startup_lpc407x_8x_177x_8x.o(HEAP) for __heap_base
+    malloca.o(i.__free$memalign) refers to mvars.o(.data) for __microlib_freelist
+    malloca.o(i.__malloc$memalign) refers to malloca.o(i.__aligned_malloc) for __aligned_malloc
+    mallocra.o(i.__aligned_malloc$realloc) refers to mallocra.o(i.internal_alloc) for internal_alloc
+    mallocra.o(i.__aligned_malloc$realloc) refers to mvars.o(.data) for __microlib_freelist_initialised
+    mallocra.o(i.__aligned_malloc$realloc) refers to startup_lpc407x_8x_177x_8x.o(HEAP) for __heap_base
+    mallocra.o(i.__aligned_malloc$realloc) refers to mvars.o(.data) for __microlib_freelist
+    mallocra.o(i.__free$realloc$memalign) refers to mvars.o(.data) for __microlib_freelist
+    mallocra.o(i.__malloc$realloc$memalign) refers to mallocra.o(i.__aligned_malloc$realloc) for __aligned_malloc$realloc
+    mallocra.o(i.__realloc$memalign) refers to mallocra.o(i.__free$realloc$memalign) for __free$realloc$memalign
+    mallocra.o(i.__realloc$memalign) refers to mallocra.o(i.internal_alloc) for internal_alloc
+    mallocra.o(i.__realloc$memalign) refers to mallocra.o(i.__malloc$realloc$memalign) for __malloc$realloc$memalign
+    mallocra.o(i.__realloc$memalign) refers to mvars.o(.data) for __microlib_freelist
+    mallocra.o(i.internal_alloc) refers to memmovea.o(.text) for __aeabi_memcpy
+    mallocra.o(i.internal_alloc) refers to mvars.o(.data) for __microlib_freelist
     dadd.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
     dadd.o(.text) refers to llshl.o(.text) for __aeabi_llsl
     dadd.o(.text) refers to llsshr.o(.text) for __aeabi_lasr
@@ -668,7 +706,7 @@ Removing Unused input sections from the image.
     Removing main.o(.rev16_text), (4 bytes).
     Removing main.o(.revsh_text), (4 bytes).
     Removing main.o(.rrx_text), (6 bytes).
-    Removing main.o(i.handle_push_button_pressed_test), (48 bytes).
+    Removing main.o(i.handle_push_button_pressed), (48 bytes).
     Removing ultrasonic_sensor.o(.rev16_text), (4 bytes).
     Removing ultrasonic_sensor.o(.revsh_text), (4 bytes).
     Removing ultrasonic_sensor.o(.rrx_text), (6 bytes).
@@ -680,8 +718,6 @@ Removing Unused input sections from the image.
     Removing motor_driver.o(.rev16_text), (4 bytes).
     Removing motor_driver.o(.revsh_text), (4 bytes).
     Removing motor_driver.o(.rrx_text), (6 bytes).
-    Removing motor_driver.o(i.motor1_backward), (28 bytes).
-    Removing motor_driver.o(i.motor2_backward), (28 bytes).
     Removing motor_driver.o(i.motor_both_backward), (12 bytes).
     Removing push_button.o(.rev16_text), (4 bytes).
     Removing push_button.o(.revsh_text), (4 bytes).
@@ -694,10 +730,6 @@ Removing Unused input sections from the image.
     Removing action.o(.rev16_text), (4 bytes).
     Removing action.o(.revsh_text), (4 bytes).
     Removing action.o(.rrx_text), (6 bytes).
-    Removing action.o(i.action_enum_to_action), (50 bytes).
-    Removing action.o(i.action_sharp_right_turn), (40 bytes).
-    Removing action.o(i.action_slight_left_turn), (40 bytes).
-    Removing action.o(i.action_slight_right_turn), (40 bytes).
     Removing joystick.o(.rev16_text), (4 bytes).
     Removing joystick.o(.revsh_text), (4 bytes).
     Removing joystick.o(.rrx_text), (6 bytes).
@@ -1434,7 +1466,6 @@ Removing Unused input sections from the image.
     Removing arm_softmax_with_batch_q7.o(.revsh_text), (4 bytes).
     Removing arm_softmax_with_batch_q7.o(.rrx_text), (6 bytes).
     Removing arm_softmax_with_batch_q7.o(i.arm_softmax_with_batch_q7), (44 bytes).
-    Removing startup_lpc407x_8x_177x_8x.o(HEAP), (0 bytes).
     Removing system_lpc407x_8x_177x_8x.o(.rev16_text), (4 bytes).
     Removing system_lpc407x_8x_177x_8x.o(.revsh_text), (4 bytes).
     Removing system_lpc407x_8x_177x_8x.o(.rrx_text), (6 bytes).
@@ -1452,7 +1483,7 @@ Removing Unused input sections from the image.
     Removing dflti.o(.text), (34 bytes).
     Removing fpstat.o(.text), (4 bytes).
 
-786 unused section(s) (total 1105078 bytes) removed from the image.
+779 unused section(s) (total 1104852 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1463,26 +1494,31 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      228  startup_lpc407x_8x_177x_8x.o(RESET)
-    ../clib/../cmprslib/lz77c.c              0x00000000   Number         0  __dclz77c.o ABSOLUTE
-    ../clib/microlib/division.c              0x00000000   Number         0  ldiv.o ABSOLUTE
+    ../clib/../cmprslib/zerorunl2.c          0x00000000   Number         0  __dczerorl2.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  ldiv.o ABSOLUTE
     ../clib/microlib/errno.c                 0x00000000   Number         0  errno.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloc.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocr.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocra.o ABSOLUTE
+    ../clib/microlib/malloc/mvars.c          0x00000000   Number         0  mvars.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmovea.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
@@ -1493,29 +1529,29 @@ Image Symbol Table
     ../fplib/microlib/f2d.c                  0x00000000   Number         0  f2d.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
-    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  ffixl.o ABSOLUTE
-    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dfltui.o ABSOLUTE
     ../fplib/microlib/fpflt.c                0x00000000   Number         0  dflti.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dfltui.o ABSOLUTE
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
     ../fplib/microlib/fpneg.c                0x00000000   Number         0  dneg.o ABSOLUTE
     ../fplib/microlib/fpstat.c               0x00000000   Number         0  fpstat.o ABSOLUTE
     ../mathlib/dunder.c                      0x00000000   Number         0  dunder.o ABSOLUTE
-    ../mathlib/expf.c                        0x00000000   Number         0  expf.o ABSOLUTE
     ../mathlib/expf.c                        0x00000000   Number         0  expf_x.o ABSOLUTE
+    ../mathlib/expf.c                        0x00000000   Number         0  expf.o ABSOLUTE
     ../mathlib/fpclassifyf.c                 0x00000000   Number         0  fpclassifyf.o ABSOLUTE
     ../mathlib/funder.c                      0x00000000   Number         0  funder.o ABSOLUTE
-    ../mathlib/log.c                         0x00000000   Number         0  log.o ABSOLUTE
     ../mathlib/log.c                         0x00000000   Number         0  log_x.o ABSOLUTE
+    ../mathlib/log.c                         0x00000000   Number         0  log.o ABSOLUTE
     ../mathlib/logf.c                        0x00000000   Number         0  logf_x.o ABSOLUTE
     ../mathlib/logf.c                        0x00000000   Number         0  logf.o ABSOLUTE
     ../mathlib/poly.c                        0x00000000   Number         0  poly.o ABSOLUTE
     ../mathlib/powf.c                        0x00000000   Number         0  powf_x.o ABSOLUTE
     ../mathlib/powf.c                        0x00000000   Number         0  powf.o ABSOLUTE
     ../mathlib/qnan.c                        0x00000000   Number         0  qnan.o ABSOLUTE
-    ../mathlib/tanhf.c                       0x00000000   Number         0  tanhf.o ABSOLUTE
     ../mathlib/tanhf.c                       0x00000000   Number         0  tanhf_x.o ABSOLUTE
+    ../mathlib/tanhf.c                       0x00000000   Number         0  tanhf.o ABSOLUTE
     C:\Users\serca\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Source\BasicMathFunctions\BasicMathFunctions.c 0x00000000   Number         0  basicmathfunctions.o ABSOLUTE
     C:\Users\serca\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Source\BayesFunctions\BayesFunctions.c 0x00000000   Number         0  bayesfunctions.o ABSOLUTE
     C:\Users\serca\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\DSP\Source\CommonTables\CommonTables.c 0x00000000   Number         0  commontables.o ABSOLUTE
@@ -1714,56 +1750,66 @@ Image Symbol Table
     .text                                    0x000000f8   Section       36  startup_lpc407x_8x_177x_8x.o(.text)
     $v0                                      0x000000f8   Number         0  startup_lpc407x_8x_177x_8x.o(.text)
     .text                                    0x0000011c   Section       36  init.o(.text)
-    .text                                    0x00000140   Section        0  __dclz77c.o(.text)
-    i.EINT0_IRQHandler                       0x000001a0   Section        0  push_button.o(i.EINT0_IRQHandler)
-    i.SystemInit                             0x000001c4   Section        0  system_lpc407x_8x_177x_8x.o(i.SystemInit)
-    i.TIMER2_IRQHandler                      0x000002b4   Section        0  ultrasonic_sensor.o(i.TIMER2_IRQHandler)
-    i.TIMER3_IRQHandler                      0x000002d4   Section        0  ultrasonic_sensor.o(i.TIMER3_IRQHandler)
-    i.__scatterload_null                     0x000002f4   Section        2  handlers.o(i.__scatterload_null)
-    .constdata                               0x000002f6   Section        3  ultrasonic_sensor.o(.constdata)
+    .text                                    0x00000140   Section        0  __dczerorl2.o(.text)
+    i.EINT0_IRQHandler                       0x00000198   Section        0  push_button.o(i.EINT0_IRQHandler)
+    i.SystemInit                             0x000001bc   Section        0  system_lpc407x_8x_177x_8x.o(i.SystemInit)
+    i.TIMER2_IRQHandler                      0x000002ac   Section        0  ultrasonic_sensor.o(i.TIMER2_IRQHandler)
+    i.TIMER3_IRQHandler                      0x000002cc   Section        0  ultrasonic_sensor.o(i.TIMER3_IRQHandler)
+    i.__scatterload_copy                     0x000002ec   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x000002fa   Section        2  handlers.o(i.__scatterload_null)
     .ARM.__at_0x02FC                         0x000002fc   Section        4  startup_lpc407x_8x_177x_8x.o(.ARM.__at_0x02FC)
     i.SystemCoreClockUpdate                  0x00000300   Section        0  system_lpc407x_8x_177x_8x.o(i.SystemCoreClockUpdate)
     i.SystemInit_ExtMemCtl                   0x000005d4   Section        0  system_lpc407x_8x_177x_8x.o(i.SystemInit_ExtMemCtl)
     i.TIMER0_IRQHandler                      0x000007cc   Section        0  action.o(i.TIMER0_IRQHandler)
     i._DelayMs                               0x00000824   Section        0  system_lpc407x_8x_177x_8x.o(i._DelayMs)
     _DelayMs                                 0x00000825   Thumb Code    38  system_lpc407x_8x_177x_8x.o(i._DelayMs)
-    i.__scatterload_copy                     0x00000850   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_zeroinit                 0x0000085e   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.action_init                            0x0000086c   Section        0  action.o(i.action_init)
-    i.action_move_forward                    0x000008e4   Section        0  action.o(i.action_move_forward)
-    i.dt_predict                             0x00000908   Section        0  decision_tree.o(i.dt_predict)
-    i.fpu_init                               0x00000948   Section        0  system_lpc407x_8x_177x_8x.o(i.fpu_init)
-    i.handle_push_button_pressed             0x00000998   Section        0  main.o(i.handle_push_button_pressed)
-    i.handle_ultrasonic_updated_led          0x000009c8   Section        0  main.o(i.handle_ultrasonic_updated_led)
-    i.init                                   0x000009fc   Section        0  main.o(i.init)
-    i.led_init                               0x00000a14   Section        0  led.o(i.led_init)
-    i.led_turn_off                           0x00000a6c   Section        0  led.o(i.led_turn_off)
-    i.led_turn_on                            0x00000abc   Section        0  led.o(i.led_turn_on)
-    i.main                                   0x00000b0c   Section        0  main.o(i.main)
-    i.motor1_forward                         0x00000ba8   Section        0  motor_driver.o(i.motor1_forward)
-    i.motor1_update_duty_cycle               0x00000bc4   Section        0  motor_driver.o(i.motor1_update_duty_cycle)
-    i.motor2_forward                         0x00000bec   Section        0  motor_driver.o(i.motor2_forward)
-    i.motor2_update_duty_cycle               0x00000c08   Section        0  motor_driver.o(i.motor2_update_duty_cycle)
-    i.motor_both_forward                     0x00000c30   Section        0  motor_driver.o(i.motor_both_forward)
-    i.motor_both_update_duty_cycle           0x00000c3c   Section        0  motor_driver.o(i.motor_both_update_duty_cycle)
-    i.motor_init                             0x00000c50   Section        0  motor_driver.o(i.motor_init)
-    i.push_button_init                       0x00000d18   Section        0  push_button.o(i.push_button_init)
-    i.start_timer_and_stop_after             0x00000d78   Section        0  action.o(i.start_timer_and_stop_after)
-    i.start_triggering                       0x00000d96   Section        0  ultrasonic_sensor.o(i.start_triggering)
-    i.ultrasonic_handle_single               0x00000db4   Section        0  ultrasonic_sensor.o(i.ultrasonic_handle_single)
-    i.ultrasonic_init                        0x00000f24   Section        0  ultrasonic_sensor.o(i.ultrasonic_init)
-    i.ultrasonic_init_single                 0x00000f5c   Section        0  ultrasonic_sensor.o(i.ultrasonic_init_single)
-    i.update                                 0x00001028   Section        0  main.o(i.update)
-    .data                                    0x10000000   Section    14737  main.o(.data)
-    test_input                               0x10000004   Data       13096  main.o(.data)
-    correct_output                           0x1000332c   Data        1637  main.o(.data)
-    .data                                    0x10003994   Section      195  ultrasonic_sensor.o(.data)
-    .data                                    0x10003a57   Section        1  push_button.o(.data)
-    .data                                    0x10003a58   Section        1  action.o(.data)
-    .data                                    0x10003a5c   Section      501  decision_tree.o(.data)
-    .data                                    0x10003c54   Section       16  system_lpc407x_8x_177x_8x.o(.data)
-    .bss                                     0x10003c64   Section       32  ultrasonic_sensor.o(.bss)
-    STACK                                    0x10003c88   Section     1024  startup_lpc407x_8x_177x_8x.o(STACK)
+    i.__scatterload_zeroinit                 0x00000850   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.action_enum_to_action                  0x0000085e   Section        0  action.o(i.action_enum_to_action)
+    i.action_init                            0x00000890   Section        0  action.o(i.action_init)
+    i.action_move_forward                    0x00000908   Section        0  action.o(i.action_move_forward)
+    i.action_sharp_right_turn                0x0000092c   Section        0  action.o(i.action_sharp_right_turn)
+    i.action_slight_left_turn                0x00000954   Section        0  action.o(i.action_slight_left_turn)
+    i.action_slight_right_turn               0x0000097c   Section        0  action.o(i.action_slight_right_turn)
+    i.dt_predict                             0x000009a4   Section        0  decision_tree.o(i.dt_predict)
+    i.fpu_init                               0x000009e4   Section        0  system_lpc407x_8x_177x_8x.o(i.fpu_init)
+    i.free                                   0x00000a34   Section        0  malloc.o(i.free)
+    i.handle_action_idle                     0x00000a84   Section        0  main.o(i.handle_action_idle)
+    i.handle_push_button_pressed_test        0x00000ad4   Section        0  main.o(i.handle_push_button_pressed_test)
+    i.handle_ultrasonic_updated_led          0x00000b04   Section        0  main.o(i.handle_ultrasonic_updated_led)
+    i.init                                   0x00000b38   Section        0  main.o(i.init)
+    i.led_init                               0x00000b50   Section        0  led.o(i.led_init)
+    i.led_turn_off                           0x00000ba8   Section        0  led.o(i.led_turn_off)
+    i.led_turn_on                            0x00000bf8   Section        0  led.o(i.led_turn_on)
+    i.main                                   0x00000c48   Section        0  main.o(i.main)
+    i.malloc                                 0x00000c54   Section        0  malloc.o(i.malloc)
+    i.motor1_backward                        0x00000cc0   Section        0  motor_driver.o(i.motor1_backward)
+    i.motor1_forward                         0x00000cdc   Section        0  motor_driver.o(i.motor1_forward)
+    i.motor1_update_duty_cycle               0x00000cf8   Section        0  motor_driver.o(i.motor1_update_duty_cycle)
+    i.motor2_backward                        0x00000d20   Section        0  motor_driver.o(i.motor2_backward)
+    i.motor2_forward                         0x00000d3c   Section        0  motor_driver.o(i.motor2_forward)
+    i.motor2_update_duty_cycle               0x00000d58   Section        0  motor_driver.o(i.motor2_update_duty_cycle)
+    i.motor_both_forward                     0x00000d80   Section        0  motor_driver.o(i.motor_both_forward)
+    i.motor_both_update_duty_cycle           0x00000d8c   Section        0  motor_driver.o(i.motor_both_update_duty_cycle)
+    i.motor_init                             0x00000da0   Section        0  motor_driver.o(i.motor_init)
+    i.push_button_init                       0x00000e68   Section        0  push_button.o(i.push_button_init)
+    i.start_timer_and_stop_after             0x00000ec8   Section        0  action.o(i.start_timer_and_stop_after)
+    i.start_triggering                       0x00000ee6   Section        0  ultrasonic_sensor.o(i.start_triggering)
+    i.ultrasonic_handle_single               0x00000f04   Section        0  ultrasonic_sensor.o(i.ultrasonic_handle_single)
+    i.ultrasonic_init                        0x00001080   Section        0  ultrasonic_sensor.o(i.ultrasonic_init)
+    i.ultrasonic_init_single                 0x000010b8   Section        0  ultrasonic_sensor.o(i.ultrasonic_init_single)
+    i.update                                 0x00001184   Section        0  main.o(i.update)
+    .constdata                               0x000011d0   Section        3  ultrasonic_sensor.o(.constdata)
+    .data                                    0x10000000   Section        4  main.o(.data)
+    .data                                    0x10000004   Section      195  ultrasonic_sensor.o(.data)
+    .data                                    0x100000c7   Section        1  push_button.o(.data)
+    .data                                    0x100000c8   Section        1  action.o(.data)
+    .data                                    0x100000cc   Section      501  decision_tree.o(.data)
+    .data                                    0x100002c4   Section       16  system_lpc407x_8x_177x_8x.o(.data)
+    .data                                    0x100002d4   Section        4  mvars.o(.data)
+    .data                                    0x100002d8   Section        4  mvars.o(.data)
+    .bss                                     0x100002dc   Section       32  ultrasonic_sensor.o(.bss)
+    HEAP                                     0x10000300   Section        0  startup_lpc407x_8x_177x_8x.o(HEAP)
+    STACK                                    0x10000300   Section     1024  startup_lpc407x_8x_177x_8x.o(STACK)
 
     Global Symbols
 
@@ -1833,70 +1879,83 @@ Image Symbol Table
     WDT_IRQHandler                           0x00000113   Thumb Code     0  startup_lpc407x_8x_177x_8x.o(.text)
     __scatterload                            0x0000011d   Thumb Code    28  init.o(.text)
     __scatterload_rt2                        0x0000011d   Thumb Code     0  init.o(.text)
-    __decompress                             0x00000141   Thumb Code     0  __dclz77c.o(.text)
-    __decompress2                            0x00000141   Thumb Code    94  __dclz77c.o(.text)
-    EINT0_IRQHandler                         0x000001a1   Thumb Code    22  push_button.o(i.EINT0_IRQHandler)
-    SystemInit                               0x000001c5   Thumb Code   224  system_lpc407x_8x_177x_8x.o(i.SystemInit)
-    TIMER2_IRQHandler                        0x000002b5   Thumb Code    26  ultrasonic_sensor.o(i.TIMER2_IRQHandler)
-    TIMER3_IRQHandler                        0x000002d5   Thumb Code    26  ultrasonic_sensor.o(i.TIMER3_IRQHandler)
-    __scatterload_null                       0x000002f5   Thumb Code     2  handlers.o(i.__scatterload_null)
-    n_sensors                                0x000002f6   Data           1  ultrasonic_sensor.o(.constdata)
-    n_TIM2_using_sensors                     0x000002f7   Data           1  ultrasonic_sensor.o(.constdata)
-    n_TIM3_using_sensors                     0x000002f8   Data           1  ultrasonic_sensor.o(.constdata)
+    __decompress                             0x00000141   Thumb Code     0  __dczerorl2.o(.text)
+    __decompress1                            0x00000141   Thumb Code    86  __dczerorl2.o(.text)
+    EINT0_IRQHandler                         0x00000199   Thumb Code    22  push_button.o(i.EINT0_IRQHandler)
+    SystemInit                               0x000001bd   Thumb Code   224  system_lpc407x_8x_177x_8x.o(i.SystemInit)
+    TIMER2_IRQHandler                        0x000002ad   Thumb Code    26  ultrasonic_sensor.o(i.TIMER2_IRQHandler)
+    TIMER3_IRQHandler                        0x000002cd   Thumb Code    26  ultrasonic_sensor.o(i.TIMER3_IRQHandler)
+    __scatterload_copy                       0x000002ed   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x000002fb   Thumb Code     2  handlers.o(i.__scatterload_null)
     SystemCoreClockUpdate                    0x00000301   Thumb Code   696  system_lpc407x_8x_177x_8x.o(i.SystemCoreClockUpdate)
     SystemInit_ExtMemCtl                     0x000005d5   Thumb Code   468  system_lpc407x_8x_177x_8x.o(i.SystemInit_ExtMemCtl)
     TIMER0_IRQHandler                        0x000007cd   Thumb Code    84  action.o(i.TIMER0_IRQHandler)
-    __scatterload_copy                       0x00000851   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_zeroinit                   0x0000085f   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    action_init                              0x0000086d   Thumb Code   110  action.o(i.action_init)
-    action_move_forward                      0x000008e5   Thumb Code    26  action.o(i.action_move_forward)
-    dt_predict                               0x00000909   Thumb Code    56  decision_tree.o(i.dt_predict)
-    fpu_init                                 0x00000949   Thumb Code    62  system_lpc407x_8x_177x_8x.o(i.fpu_init)
-    handle_push_button_pressed               0x00000999   Thumb Code    38  main.o(i.handle_push_button_pressed)
-    handle_ultrasonic_updated_led            0x000009c9   Thumb Code    44  main.o(i.handle_ultrasonic_updated_led)
-    init                                     0x000009fd   Thumb Code    24  main.o(i.init)
-    led_init                                 0x00000a15   Thumb Code    84  led.o(i.led_init)
-    led_turn_off                             0x00000a6d   Thumb Code    76  led.o(i.led_turn_off)
-    led_turn_on                              0x00000abd   Thumb Code    76  led.o(i.led_turn_on)
-    main                                     0x00000b0d   Thumb Code   144  main.o(i.main)
-    motor1_forward                           0x00000ba9   Thumb Code    24  motor_driver.o(i.motor1_forward)
-    motor1_update_duty_cycle                 0x00000bc5   Thumb Code    34  motor_driver.o(i.motor1_update_duty_cycle)
-    motor2_forward                           0x00000bed   Thumb Code    24  motor_driver.o(i.motor2_forward)
-    motor2_update_duty_cycle                 0x00000c09   Thumb Code    34  motor_driver.o(i.motor2_update_duty_cycle)
-    motor_both_forward                       0x00000c31   Thumb Code    12  motor_driver.o(i.motor_both_forward)
-    motor_both_update_duty_cycle             0x00000c3d   Thumb Code    18  motor_driver.o(i.motor_both_update_duty_cycle)
-    motor_init                               0x00000c51   Thumb Code   184  motor_driver.o(i.motor_init)
-    push_button_init                         0x00000d19   Thumb Code    82  push_button.o(i.push_button_init)
-    start_timer_and_stop_after               0x00000d79   Thumb Code    30  action.o(i.start_timer_and_stop_after)
-    start_triggering                         0x00000d97   Thumb Code    30  ultrasonic_sensor.o(i.start_triggering)
-    ultrasonic_handle_single                 0x00000db5   Thumb Code   344  ultrasonic_sensor.o(i.ultrasonic_handle_single)
-    ultrasonic_init                          0x00000f25   Thumb Code    46  ultrasonic_sensor.o(i.ultrasonic_init)
-    ultrasonic_init_single                   0x00000f5d   Thumb Code   198  ultrasonic_sensor.o(i.ultrasonic_init_single)
-    update                                   0x00001029   Thumb Code    46  main.o(i.update)
-    Region$$Table$$Base                      0x00001064   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00001084   Number         0  anon$$obj.o(Region$$Table)
+    __scatterload_zeroinit                   0x00000851   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    action_enum_to_action                    0x0000085f   Thumb Code    50  action.o(i.action_enum_to_action)
+    action_init                              0x00000891   Thumb Code   110  action.o(i.action_init)
+    action_move_forward                      0x00000909   Thumb Code    26  action.o(i.action_move_forward)
+    action_sharp_right_turn                  0x0000092d   Thumb Code    30  action.o(i.action_sharp_right_turn)
+    action_slight_left_turn                  0x00000955   Thumb Code    30  action.o(i.action_slight_left_turn)
+    action_slight_right_turn                 0x0000097d   Thumb Code    30  action.o(i.action_slight_right_turn)
+    dt_predict                               0x000009a5   Thumb Code    56  decision_tree.o(i.dt_predict)
+    fpu_init                                 0x000009e5   Thumb Code    62  system_lpc407x_8x_177x_8x.o(i.fpu_init)
+    free                                     0x00000a35   Thumb Code    76  malloc.o(i.free)
+    handle_action_idle                       0x00000a85   Thumb Code    66  main.o(i.handle_action_idle)
+    handle_push_button_pressed_test          0x00000ad5   Thumb Code    40  main.o(i.handle_push_button_pressed_test)
+    handle_ultrasonic_updated_led            0x00000b05   Thumb Code    44  main.o(i.handle_ultrasonic_updated_led)
+    init                                     0x00000b39   Thumb Code    24  main.o(i.init)
+    led_init                                 0x00000b51   Thumb Code    84  led.o(i.led_init)
+    led_turn_off                             0x00000ba9   Thumb Code    76  led.o(i.led_turn_off)
+    led_turn_on                              0x00000bf9   Thumb Code    76  led.o(i.led_turn_on)
+    main                                     0x00000c49   Thumb Code    12  main.o(i.main)
+    malloc                                   0x00000c55   Thumb Code    92  malloc.o(i.malloc)
+    motor1_backward                          0x00000cc1   Thumb Code    24  motor_driver.o(i.motor1_backward)
+    motor1_forward                           0x00000cdd   Thumb Code    24  motor_driver.o(i.motor1_forward)
+    motor1_update_duty_cycle                 0x00000cf9   Thumb Code    34  motor_driver.o(i.motor1_update_duty_cycle)
+    motor2_backward                          0x00000d21   Thumb Code    24  motor_driver.o(i.motor2_backward)
+    motor2_forward                           0x00000d3d   Thumb Code    24  motor_driver.o(i.motor2_forward)
+    motor2_update_duty_cycle                 0x00000d59   Thumb Code    34  motor_driver.o(i.motor2_update_duty_cycle)
+    motor_both_forward                       0x00000d81   Thumb Code    12  motor_driver.o(i.motor_both_forward)
+    motor_both_update_duty_cycle             0x00000d8d   Thumb Code    18  motor_driver.o(i.motor_both_update_duty_cycle)
+    motor_init                               0x00000da1   Thumb Code   184  motor_driver.o(i.motor_init)
+    push_button_init                         0x00000e69   Thumb Code    82  push_button.o(i.push_button_init)
+    start_timer_and_stop_after               0x00000ec9   Thumb Code    30  action.o(i.start_timer_and_stop_after)
+    start_triggering                         0x00000ee7   Thumb Code    30  ultrasonic_sensor.o(i.start_triggering)
+    ultrasonic_handle_single                 0x00000f05   Thumb Code   354  ultrasonic_sensor.o(i.ultrasonic_handle_single)
+    ultrasonic_init                          0x00001081   Thumb Code    46  ultrasonic_sensor.o(i.ultrasonic_init)
+    ultrasonic_init_single                   0x000010b9   Thumb Code   198  ultrasonic_sensor.o(i.ultrasonic_init_single)
+    update                                   0x00001185   Thumb Code    58  main.o(i.update)
+    n_sensors                                0x000011d0   Data           1  ultrasonic_sensor.o(.constdata)
+    n_TIM2_using_sensors                     0x000011d1   Data           1  ultrasonic_sensor.o(.constdata)
+    n_TIM3_using_sensors                     0x000011d2   Data           1  ultrasonic_sensor.o(.constdata)
+    Region$$Table$$Base                      0x000011d4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000011f4   Number         0  anon$$obj.o(Region$$Table)
     i                                        0x10000000   Data           4  main.o(.data)
-    ultrasonic0                              0x10003994   Data          40  ultrasonic_sensor.o(.data)
-    ultrasonic1                              0x100039bc   Data          40  ultrasonic_sensor.o(.data)
-    ultrasonic2                              0x100039e4   Data          40  ultrasonic_sensor.o(.data)
-    ultrasonic3                              0x10003a0c   Data          40  ultrasonic_sensor.o(.data)
-    ultrasonic                               0x10003a34   Data          16  ultrasonic_sensor.o(.data)
-    TIM2_using_sensors                       0x10003a44   Data           8  ultrasonic_sensor.o(.data)
-    TIM3_using_sensors                       0x10003a4c   Data           8  ultrasonic_sensor.o(.data)
-    is_trig_rising                           0x10003a54   Data           1  ultrasonic_sensor.o(.data)
-    is_echo_rising                           0x10003a55   Data           1  ultrasonic_sensor.o(.data)
-    ultrasonic_updated                       0x10003a56   Data           1  ultrasonic_sensor.o(.data)
-    push_button_pressed                      0x10003a57   Data           1  push_button.o(.data)
-    action_current                           0x10003a58   Data           1  action.o(.data)
-    dt_nodes                                 0x10003a5c   Data         500  decision_tree.o(.data)
-    dt_result                                0x10003c50   Data           1  decision_tree.o(.data)
-    SystemCoreClock                          0x10003c54   Data           4  system_lpc407x_8x_177x_8x.o(.data)
-    PeripheralClock                          0x10003c58   Data           4  system_lpc407x_8x_177x_8x.o(.data)
-    EMCClock                                 0x10003c5c   Data           4  system_lpc407x_8x_177x_8x.o(.data)
-    USBClock                                 0x10003c60   Data           4  system_lpc407x_8x_177x_8x.o(.data)
-    last_measurement                         0x10003c64   Data          16  ultrasonic_sensor.o(.bss)
-    ultrasonic_distance                      0x10003c74   Data          16  ultrasonic_sensor.o(.bss)
-    __initial_sp                             0x10004088   Data           0  startup_lpc407x_8x_177x_8x.o(STACK)
+    ultrasonic0                              0x10000004   Data          40  ultrasonic_sensor.o(.data)
+    ultrasonic1                              0x1000002c   Data          40  ultrasonic_sensor.o(.data)
+    ultrasonic2                              0x10000054   Data          40  ultrasonic_sensor.o(.data)
+    ultrasonic3                              0x1000007c   Data          40  ultrasonic_sensor.o(.data)
+    ultrasonic                               0x100000a4   Data          16  ultrasonic_sensor.o(.data)
+    TIM2_using_sensors                       0x100000b4   Data           8  ultrasonic_sensor.o(.data)
+    TIM3_using_sensors                       0x100000bc   Data           8  ultrasonic_sensor.o(.data)
+    is_trig_rising                           0x100000c4   Data           1  ultrasonic_sensor.o(.data)
+    is_echo_rising                           0x100000c5   Data           1  ultrasonic_sensor.o(.data)
+    ultrasonic_updated                       0x100000c6   Data           1  ultrasonic_sensor.o(.data)
+    push_button_pressed                      0x100000c7   Data           1  push_button.o(.data)
+    action_current                           0x100000c8   Data           1  action.o(.data)
+    dt_nodes                                 0x100000cc   Data         500  decision_tree.o(.data)
+    dt_result                                0x100002c0   Data           1  decision_tree.o(.data)
+    SystemCoreClock                          0x100002c4   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    PeripheralClock                          0x100002c8   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    EMCClock                                 0x100002cc   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    USBClock                                 0x100002d0   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    __microlib_freelist                      0x100002d4   Data           4  mvars.o(.data)
+    __microlib_freelist_initialised          0x100002d8   Data           4  mvars.o(.data)
+    last_measurement                         0x100002dc   Data          16  ultrasonic_sensor.o(.bss)
+    ultrasonic_distance                      0x100002ec   Data          16  ultrasonic_sensor.o(.bss)
+    __heap_base                              0x10000300   Data           0  startup_lpc407x_8x_177x_8x.o(HEAP)
+    __heap_limit                             0x10000300   Data           0  startup_lpc407x_8x_177x_8x.o(HEAP)
+    __initial_sp                             0x10000700   Data           0  startup_lpc407x_8x_177x_8x.o(STACK)
 
 
 
@@ -1906,91 +1965,102 @@ Memory Map of the image
 
   Image Entry point : 0x000000f9
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00004ce8, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00003e84])
+  Load Region LR_1 (Base: 0x00000000, Size: 0x000014d0, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00001328])
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00001084, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x00000000   0x00000000   0x000000e4   Data   RO         6074    RESET               startup_lpc407x_8x_177x_8x.o
-    0x000000e4   0x000000e4   0x00000000   Code   RO         6203  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x000000e4   0x000000e4   0x00000004   Code   RO         6275    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x000000e8   0x000000e8   0x00000004   Code   RO         6278    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x000000ec   0x000000ec   0x00000000   Code   RO         6280    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x000000ec   0x000000ec   0x00000000   Code   RO         6282    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x000000ec   0x000000ec   0x00000008   Code   RO         6283    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x000000f4   0x000000f4   0x00000000   Code   RO         6285    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x000000f4   0x000000f4   0x00000000   Code   RO         6287    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x000000f4   0x000000f4   0x00000004   Code   RO         6276    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x000000f8   0x000000f8   0x00000024   Code   RO         6076  * .text               startup_lpc407x_8x_177x_8x.o
-    0x0000011c   0x0000011c   0x00000024   Code   RO         6307    .text               mc_w.l(init.o)
-    0x00000140   0x00000140   0x0000005e   Code   RO         6317    .text               mc_w.l(__dclz77c.o)
-    0x0000019e   0x0000019e   0x00000002   PAD
-    0x000001a0   0x000001a0   0x00000024   Code   RO          332    i.EINT0_IRQHandler  push_button.o
-    0x000001c4   0x000001c4   0x000000f0   Code   RO         6086    i.SystemInit        system_lpc407x_8x_177x_8x.o
-    0x000002b4   0x000002b4   0x00000020   Code   RO          137    i.TIMER2_IRQHandler  ultrasonic_sensor.o
-    0x000002d4   0x000002d4   0x00000020   Code   RO          138    i.TIMER3_IRQHandler  ultrasonic_sensor.o
-    0x000002f4   0x000002f4   0x00000002   Code   RO         6312    i.__scatterload_null  mc_w.l(handlers.o)
-    0x000002f6   0x000002f6   0x00000003   Data   RO          144    .constdata          ultrasonic_sensor.o
-    0x000002f9   0x000002f9   0x00000003   PAD
-    0x000002fc   0x000002fc   0x00000004   Code   RO         6075    .ARM.__at_0x02FC    startup_lpc407x_8x_177x_8x.o
-    0x00000300   0x00000300   0x000002d4   Code   RO         6085    i.SystemCoreClockUpdate  system_lpc407x_8x_177x_8x.o
-    0x000005d4   0x000005d4   0x000001f8   Code   RO         6087    i.SystemInit_ExtMemCtl  system_lpc407x_8x_177x_8x.o
-    0x000007cc   0x000007cc   0x00000058   Code   RO          401    i.TIMER0_IRQHandler  action.o
-    0x00000824   0x00000824   0x0000002c   Code   RO         6088    i._DelayMs          system_lpc407x_8x_177x_8x.o
-    0x00000850   0x00000850   0x0000000e   Code   RO         6311    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0000085e   0x0000085e   0x0000000e   Code   RO         6313    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x0000086c   0x0000086c   0x00000078   Code   RO          403    i.action_init       action.o
-    0x000008e4   0x000008e4   0x00000024   Code   RO          404    i.action_move_forward  action.o
-    0x00000908   0x00000908   0x00000040   Code   RO          595    i.dt_predict        decision_tree.o
-    0x00000948   0x00000948   0x00000050   Code   RO         6089    i.fpu_init          system_lpc407x_8x_177x_8x.o
-    0x00000998   0x00000998   0x00000030   Code   RO            4    i.handle_push_button_pressed  main.o
-    0x000009c8   0x000009c8   0x00000034   Code   RO            6    i.handle_ultrasonic_updated_led  main.o
-    0x000009fc   0x000009fc   0x00000018   Code   RO            7    i.init              main.o
-    0x00000a14   0x00000a14   0x00000058   Code   RO          203    i.led_init          led.o
-    0x00000a6c   0x00000a6c   0x00000050   Code   RO          204    i.led_turn_off      led.o
-    0x00000abc   0x00000abc   0x00000050   Code   RO          206    i.led_turn_on       led.o
-    0x00000b0c   0x00000b0c   0x0000009c   Code   RO            8    i.main              main.o
-    0x00000ba8   0x00000ba8   0x0000001c   Code   RO          255    i.motor1_forward    motor_driver.o
-    0x00000bc4   0x00000bc4   0x00000028   Code   RO          256    i.motor1_update_duty_cycle  motor_driver.o
-    0x00000bec   0x00000bec   0x0000001c   Code   RO          258    i.motor2_forward    motor_driver.o
-    0x00000c08   0x00000c08   0x00000028   Code   RO          259    i.motor2_update_duty_cycle  motor_driver.o
-    0x00000c30   0x00000c30   0x0000000c   Code   RO          261    i.motor_both_forward  motor_driver.o
-    0x00000c3c   0x00000c3c   0x00000012   Code   RO          262    i.motor_both_update_duty_cycle  motor_driver.o
-    0x00000c4e   0x00000c4e   0x00000002   PAD
-    0x00000c50   0x00000c50   0x000000c8   Code   RO          263    i.motor_init        motor_driver.o
-    0x00000d18   0x00000d18   0x00000060   Code   RO          333    i.push_button_init  push_button.o
-    0x00000d78   0x00000d78   0x0000001e   Code   RO          408    i.start_timer_and_stop_after  action.o
-    0x00000d96   0x00000d96   0x0000001e   Code   RO          139    i.start_triggering  ultrasonic_sensor.o
-    0x00000db4   0x00000db4   0x00000170   Code   RO          140    i.ultrasonic_handle_single  ultrasonic_sensor.o
-    0x00000f24   0x00000f24   0x00000038   Code   RO          141    i.ultrasonic_init   ultrasonic_sensor.o
-    0x00000f5c   0x00000f5c   0x000000cc   Code   RO          142    i.ultrasonic_init_single  ultrasonic_sensor.o
-    0x00001028   0x00001028   0x0000003c   Code   RO            9    i.update            main.o
-    0x00001064   0x00001064   0x00000020   Data   RO         6309    Region$$Table       anon$$obj.o
-
-
-    Execution Region ER_RW (Exec base: 0x10000000, Load base: 0x00001084, Size: 0x00003c64, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00002e00])
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000011f4, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x10000000   COMPRESSED   0x00003991   Data   RW           10    .data               main.o
-    0x10003991   COMPRESSED   0x00000003   PAD
-    0x10003994   COMPRESSED   0x000000c3   Data   RW          145    .data               ultrasonic_sensor.o
-    0x10003a57   COMPRESSED   0x00000001   Data   RW          334    .data               push_button.o
-    0x10003a58   COMPRESSED   0x00000001   Data   RW          409    .data               action.o
-    0x10003a59   COMPRESSED   0x00000003   PAD
-    0x10003a5c   COMPRESSED   0x000001f5   Data   RW          596    .data               decision_tree.o
-    0x10003c51   COMPRESSED   0x00000003   PAD
-    0x10003c54   COMPRESSED   0x00000010   Data   RW         6090    .data               system_lpc407x_8x_177x_8x.o
+    0x00000000   0x00000000   0x000000e4   Data   RO         6080    RESET               startup_lpc407x_8x_177x_8x.o
+    0x000000e4   0x000000e4   0x00000000   Code   RO         6209  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x000000e4   0x000000e4   0x00000004   Code   RO         6309    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x000000e8   0x000000e8   0x00000004   Code   RO         6312    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x000000ec   0x000000ec   0x00000000   Code   RO         6314    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x000000ec   0x000000ec   0x00000000   Code   RO         6316    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x000000ec   0x000000ec   0x00000008   Code   RO         6317    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x000000f4   0x000000f4   0x00000000   Code   RO         6319    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x000000f4   0x000000f4   0x00000000   Code   RO         6321    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x000000f4   0x000000f4   0x00000004   Code   RO         6310    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x000000f8   0x000000f8   0x00000024   Code   RO         6082  * .text               startup_lpc407x_8x_177x_8x.o
+    0x0000011c   0x0000011c   0x00000024   Code   RO         6343    .text               mc_w.l(init.o)
+    0x00000140   0x00000140   0x00000056   Code   RO         6353    .text               mc_w.l(__dczerorl2.o)
+    0x00000196   0x00000196   0x00000002   PAD
+    0x00000198   0x00000198   0x00000024   Code   RO          335    i.EINT0_IRQHandler  push_button.o
+    0x000001bc   0x000001bc   0x000000f0   Code   RO         6092    i.SystemInit        system_lpc407x_8x_177x_8x.o
+    0x000002ac   0x000002ac   0x00000020   Code   RO          140    i.TIMER2_IRQHandler  ultrasonic_sensor.o
+    0x000002cc   0x000002cc   0x00000020   Code   RO          141    i.TIMER3_IRQHandler  ultrasonic_sensor.o
+    0x000002ec   0x000002ec   0x0000000e   Code   RO         6347    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x000002fa   0x000002fa   0x00000002   Code   RO         6348    i.__scatterload_null  mc_w.l(handlers.o)
+    0x000002fc   0x000002fc   0x00000004   Code   RO         6081    .ARM.__at_0x02FC    startup_lpc407x_8x_177x_8x.o
+    0x00000300   0x00000300   0x000002d4   Code   RO         6091    i.SystemCoreClockUpdate  system_lpc407x_8x_177x_8x.o
+    0x000005d4   0x000005d4   0x000001f8   Code   RO         6093    i.SystemInit_ExtMemCtl  system_lpc407x_8x_177x_8x.o
+    0x000007cc   0x000007cc   0x00000058   Code   RO          404    i.TIMER0_IRQHandler  action.o
+    0x00000824   0x00000824   0x0000002c   Code   RO         6094    i._DelayMs          system_lpc407x_8x_177x_8x.o
+    0x00000850   0x00000850   0x0000000e   Code   RO         6349    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x0000085e   0x0000085e   0x00000032   Code   RO          405    i.action_enum_to_action  action.o
+    0x00000890   0x00000890   0x00000078   Code   RO          406    i.action_init       action.o
+    0x00000908   0x00000908   0x00000024   Code   RO          407    i.action_move_forward  action.o
+    0x0000092c   0x0000092c   0x00000028   Code   RO          408    i.action_sharp_right_turn  action.o
+    0x00000954   0x00000954   0x00000028   Code   RO          409    i.action_slight_left_turn  action.o
+    0x0000097c   0x0000097c   0x00000028   Code   RO          410    i.action_slight_right_turn  action.o
+    0x000009a4   0x000009a4   0x00000040   Code   RO          601    i.dt_predict        decision_tree.o
+    0x000009e4   0x000009e4   0x00000050   Code   RO         6095    i.fpu_init          system_lpc407x_8x_177x_8x.o
+    0x00000a34   0x00000a34   0x00000050   Code   RO         6230    i.free              mc_w.l(malloc.o)
+    0x00000a84   0x00000a84   0x00000050   Code   RO            4    i.handle_action_idle  main.o
+    0x00000ad4   0x00000ad4   0x00000030   Code   RO            6    i.handle_push_button_pressed_test  main.o
+    0x00000b04   0x00000b04   0x00000034   Code   RO            7    i.handle_ultrasonic_updated_led  main.o
+    0x00000b38   0x00000b38   0x00000018   Code   RO            8    i.init              main.o
+    0x00000b50   0x00000b50   0x00000058   Code   RO          206    i.led_init          led.o
+    0x00000ba8   0x00000ba8   0x00000050   Code   RO          207    i.led_turn_off      led.o
+    0x00000bf8   0x00000bf8   0x00000050   Code   RO          209    i.led_turn_on       led.o
+    0x00000c48   0x00000c48   0x0000000c   Code   RO            9    i.main              main.o
+    0x00000c54   0x00000c54   0x0000006c   Code   RO         6231    i.malloc            mc_w.l(malloc.o)
+    0x00000cc0   0x00000cc0   0x0000001c   Code   RO          257    i.motor1_backward   motor_driver.o
+    0x00000cdc   0x00000cdc   0x0000001c   Code   RO          258    i.motor1_forward    motor_driver.o
+    0x00000cf8   0x00000cf8   0x00000028   Code   RO          259    i.motor1_update_duty_cycle  motor_driver.o
+    0x00000d20   0x00000d20   0x0000001c   Code   RO          260    i.motor2_backward   motor_driver.o
+    0x00000d3c   0x00000d3c   0x0000001c   Code   RO          261    i.motor2_forward    motor_driver.o
+    0x00000d58   0x00000d58   0x00000028   Code   RO          262    i.motor2_update_duty_cycle  motor_driver.o
+    0x00000d80   0x00000d80   0x0000000c   Code   RO          264    i.motor_both_forward  motor_driver.o
+    0x00000d8c   0x00000d8c   0x00000012   Code   RO          265    i.motor_both_update_duty_cycle  motor_driver.o
+    0x00000d9e   0x00000d9e   0x00000002   PAD
+    0x00000da0   0x00000da0   0x000000c8   Code   RO          266    i.motor_init        motor_driver.o
+    0x00000e68   0x00000e68   0x00000060   Code   RO          336    i.push_button_init  push_button.o
+    0x00000ec8   0x00000ec8   0x0000001e   Code   RO          411    i.start_timer_and_stop_after  action.o
+    0x00000ee6   0x00000ee6   0x0000001e   Code   RO          142    i.start_triggering  ultrasonic_sensor.o
+    0x00000f04   0x00000f04   0x0000017c   Code   RO          143    i.ultrasonic_handle_single  ultrasonic_sensor.o
+    0x00001080   0x00001080   0x00000038   Code   RO          144    i.ultrasonic_init   ultrasonic_sensor.o
+    0x000010b8   0x000010b8   0x000000cc   Code   RO          145    i.ultrasonic_init_single  ultrasonic_sensor.o
+    0x00001184   0x00001184   0x0000004c   Code   RO           10    i.update            main.o
+    0x000011d0   0x000011d0   0x00000003   Data   RO          147    .constdata          ultrasonic_sensor.o
+    0x000011d3   0x000011d3   0x00000001   PAD
+    0x000011d4   0x000011d4   0x00000020   Data   RO         6345    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_ZI (Exec base: 0x10003c64, Load base: 0x00003e84, Size: 0x00000424, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x10000000, Load base: 0x000011f4, Size: 0x000002dc, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00000134])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x10003c64        -       0x00000020   Zero   RW          143    .bss                ultrasonic_sensor.o
-    0x10003c84   0x00003e84   0x00000004   PAD
-    0x10003c88        -       0x00000400   Zero   RW         6072    STACK               startup_lpc407x_8x_177x_8x.o
+    0x10000000   COMPRESSED   0x00000004   Data   RW           11    .data               main.o
+    0x10000004   COMPRESSED   0x000000c3   Data   RW          148    .data               ultrasonic_sensor.o
+    0x100000c7   COMPRESSED   0x00000001   Data   RW          337    .data               push_button.o
+    0x100000c8   COMPRESSED   0x00000001   Data   RW          412    .data               action.o
+    0x100000c9   COMPRESSED   0x00000003   PAD
+    0x100000cc   COMPRESSED   0x000001f5   Data   RW          602    .data               decision_tree.o
+    0x100002c1   COMPRESSED   0x00000003   PAD
+    0x100002c4   COMPRESSED   0x00000010   Data   RW         6096    .data               system_lpc407x_8x_177x_8x.o
+    0x100002d4   COMPRESSED   0x00000004   Data   RW         6325    .data               mc_w.l(mvars.o)
+    0x100002d8   COMPRESSED   0x00000004   Data   RW         6326    .data               mc_w.l(mvars.o)
+
+
+    Execution Region ER_ZI (Exec base: 0x100002dc, Load base: 0x00001328, Size: 0x00000424, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x100002dc        -       0x00000020   Zero   RW          146    .bss                ultrasonic_sensor.o
+    0x100002fc   0x00001328   0x00000004   PAD
+    0x10000300        -       0x00000000   Zero   RW         6079    HEAP                startup_lpc407x_8x_177x_8x.o
+    0x10000300        -       0x00000400   Zero   RW         6078    STACK               startup_lpc407x_8x_177x_8x.o
 
 
 ==============================================================================
@@ -2000,26 +2070,26 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       274         24          0          1          0       2734   action.o
+       444         54          0          1          0       4721   action.o
         64          8          0        501          0       1474   decision_tree.o
        248         12          0          0          0       1384   led.o
-       340         44          0      14737          0      46724   main.o
-       366         36          0          0          0       3421   motor_driver.o
+       292         48          0          4          0      47427   main.o
+       422         44          0          0          0       4297   motor_driver.o
        132         28          0          1          0       1264   push_button.o
         40         12        228          0       1024       1088   startup_lpc407x_8x_177x_8x.o
       1592        104          0         16          0       8655   system_lpc407x_8x_177x_8x.o
-       722         52          3        195         32      35481   ultrasonic_sensor.o
+       734         54          3        195         32      35577   ultrasonic_sensor.o
 
     ----------------------------------------------------------------------
-      3780        320        266      15460       1060     102225   Object Totals
+      3970        364        264        724       1060     105887   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         2          0          3          9          4          0   (incl. Padding)
+         2          0          1          6          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
 
-        94          0          0          0          0          0   __dclz77c.o
+        86          0          0          0          0          0   __dczerorl2.o
          0          0          0          0          0          0   entry.o
          0          0          0          0          0          0   entry10a.o
          0          0          0          0          0          0   entry11a.o
@@ -2030,19 +2100,21 @@ Image component sizes
          8          4          0          0          0          0   entry9a.o
         30          0          0          0          0          0   handlers.o
         36          8          0          0          0         68   init.o
+       188         20          0          0          0        160   malloc.o
+         0          0          0          8          0          0   mvars.o
 
     ----------------------------------------------------------------------
-       182         16          0          0          0         68   Library Totals
+       362         36          0          8          0        228   Library Totals
          2          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-       180         16          0          0          0         68   mc_w.l
+       360         36          0          8          0        228   mc_w.l
 
     ----------------------------------------------------------------------
-       182         16          0          0          0         68   Library Totals
+       362         36          0          8          0        228   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -2051,15 +2123,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3962        336        266      15460       1060      99777   Grand Totals
-      3962        336        266      11776       1060      99777   ELF Image Totals (compressed)
-      3962        336        266      11776          0          0   ROM Totals
+      4332        400        264        732       1060     102847   Grand Totals
+      4332        400        264        308       1060     102847   ELF Image Totals (compressed)
+      4332        400        264        308          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4228 (   4.13kB)
-    Total RW  Size (RW Data + ZI Data)             16520 (  16.13kB)
-    Total ROM Size (Code + RO Data + RW Data)      16004 (  15.63kB)
+    Total RO  Size (Code + RO Data)                 4596 (   4.49kB)
+    Total RW  Size (RW Data + ZI Data)              1792 (   1.75kB)
+    Total ROM Size (Code + RO Data + RW Data)       4904 (   4.79kB)
 
 ==============================================================================
 

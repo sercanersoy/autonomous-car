@@ -201,8 +201,13 @@ void ultrasonic_handle_single(Ultrasonic_Sensor_TypeDef* sensor) {
 			sensor->TIM->CCR &= ~(1 << sensor->TIM_CAPFE_bit);
 			sensor->TIM->CCR |= (1 << sensor->TIM_CAPRE_bit);
 			
-			ultrasonic_distance[sensor->id] = (*sensor->TIM_CR - last_measurement[sensor->id]) / 58;
-			ultrasonic_updated |= (1 << sensor->id);
+			uint32_t measurement = (*sensor->TIM_CR - last_measurement[sensor->id]) / 58;
+			
+			// if not noise, update distance
+			if (measurement < 1000) {
+				ultrasonic_distance[sensor->id] = measurement;
+				ultrasonic_updated |= (1 << sensor->id);
+			}
 			
 			// next is rising
 			is_echo_rising |= (1 << sensor->id);
