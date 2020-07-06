@@ -13,8 +13,8 @@ typedef struct Node {
 	float32_t threshold;
 } DT_Node;
 
-extern int8_t dt_result;
+extern uint8_t dt_result;
 
-void dt_predict(int16_t * input);
+void dt_predict(uint32_t * input);
 
 #endif

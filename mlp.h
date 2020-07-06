@@ -12,8 +12,8 @@
 #define MLP_OUTPUT_DIM 					4
 #define MLP_INPUT_SIZE					1637
 
-extern q15_t mlp_result[MLP_OUTPUT_DIM];
+extern uint8_t mlp_result;
 
-void mlp_network_forward(q15_t * input);
+void mlp_predict(uint32_t * input);
 
 #endif

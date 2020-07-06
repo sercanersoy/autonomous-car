@@ -21,7 +21,7 @@ int32_t classes[N_MODELS * 2];
 
 arm_svm_rbf_instance_f32 models[N_MODELS];
 
-int32_t svm_result;
+uint8_t svm_result;
 
 void svm_models_init() {
 	
@@ -55,7 +55,10 @@ void svm_models_init() {
 	}
 }
 
-void svm_predict(float32_t * input) {
+void svm_predict(uint32_t * input) {
+	
+	float32_t f_input[VEC_DIM];
+	for (uint8_t i = 0; i < VEC_DIM; i++) f_input[i] = (float32_t) input[i];
 	
 	uint8_t votes[N_CLASSES];
 	memset(votes, 0, N_CLASSES * sizeof(uint8_t));
@@ -68,12 +71,12 @@ void svm_predict(float32_t * input) {
 			
 			int32_t result = -1;
 			
-			arm_svm_rbf_predict_f32(&models[n], input, &result);
+			arm_svm_rbf_predict_f32(&models[n], f_input, &result);
 			votes[result]++;
 			
 			n++;
 		}
 	}
 	
-	svm_result = argmax_vec_uint8_t(votes, N_CLASSES);
+	svm_result = (uint8_t) argmax_vec_uint8_t(votes, N_CLASSES);
 }

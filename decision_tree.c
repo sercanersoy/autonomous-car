@@ -2,9 +2,9 @@
 
 DT_Node dt_nodes[N_NODES] = {DT_MODEL(dt_nodes)};
 
-int8_t dt_result;
+uint8_t dt_result;
 
-void dt_predict(int16_t * input) {
+void dt_predict(uint32_t * input) {
 	
 	DT_Node * curr = &dt_nodes[0];
 	
@@ -17,5 +17,5 @@ void dt_predict(int16_t * input) {
 		}
 	}
 	
-	dt_result = curr->value;
+	dt_result = (uint8_t) curr->value;
 }

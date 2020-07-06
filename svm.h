@@ -9,10 +9,10 @@
 #define N_CLASSES	4
 #define N_MODELS	6
 
-extern int32_t svm_result;
+extern uint8_t svm_result;
 
 void svm_models_init(void);
 
-void svm_predict(float32_t * input);
+void svm_predict(uint32_t * input);
 
 #endif
