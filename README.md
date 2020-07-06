@@ -2,7 +2,7 @@
 
 This repository is for our CmpE492 Senior Project. We developed an autonomous car using LPC4088 MCU whose task is to follow the walls of a room in clockwise direction. The car has 4 ultrasonic sensors which are on the front, left, right and back sides of the car. It has 4 wheels controlled in two groups.
 
-<img src="images/car-sensor.jpg" width="33%"/> <img src="images/car-wheels.jpg" width="33%"/> <img src="images/car-above.jpg" width="33%"/>
+<img src="images/car-sensor.jpg" width="30%"/> <img src="images/car-wheels.jpg" width="30%"/> <img src="images/car-above.jpg" width="30%"/>
 
 The image on the left shows one of its sensors. We used HC-SR04 ultrasonic sensors and included their user manual below. The image in the middle shows the wheels on one side of the car. The image on the right shows the placement of the 4 sensors on the car.
 
@@ -10,14 +10,16 @@ The image on the left shows one of its sensors. We used HC-SR04 ultrasonic senso
 
 Video Presentation: [CMPE492_Presentation](https://drive.google.com/file/d/1v7ZnOM-T5GGkCR1SXHG1gKKqD3_v4xwR/view)  
 Poster: [CMPE492_Poster](https://drive.google.com/file/d/1pslk-dO6079LEf0nyMtstPSZ7mlsOaZ4/view)  
-Autonomous Navigation Video: [Navigation_Video](https://drive.google.com/file/d/143ThXZ1jeqi1DZZFkX0uSGN1uQVC05_P/view)
+Navigation Video for MLP Model: [Navigation_Video](https://drive.google.com/file/d/143ThXZ1jeqi1DZZFkX0uSGN1uQVC05_P/view)
 
 ## How to Run
 
+### Autonomous Car
+
 To run the project on car or simulator:
 
-1. Install Keil uVision IDE
-1. Download the repository
+1. Download and install [Keil uVision IDE](https://www.keil.com/download/product/) (MDK-Arm)
+1. Download or clone the repository: [autonomous-car](https://github.com/sercanersoy/autonomous-car.git)
 1. Open the project using Keil uVision
 1. Run simulation or flash download to car
 
@@ -26,6 +28,23 @@ If you want to run on the car, make sure to:
 1. Connect the car to the computer using a Micro-B type USB cable
 1. Connect right pins according to Pin Configurations below
 1. Connect sensors and motor driver to voltage
+
+There are 4 operation modes:
+
+1. **TEST:**
+	- Ultrasonic sensors can be tested. If the sensor reading is smaller than 15 centimeters, corresponding LED on the Quickstart Board will be turned off.
+	- Actions can be tested. Press user push button on the Quickstart Board to take each action one by one.
+1. **MLP:**
+	- Press user push button on the Quickstart Board to start autonomous navigation using MLP model.
+	- Press it again to stop the navigation.
+1. **SVM:**
+	- Press user push button on the Quickstart Board to start autonomous navigation using SVM model.
+	- Press it again to stop the navigation.
+1. **DT:**
+	- Press user push button on the Quickstart Board to start autonomous navigation using DT model.
+	- Press it again to stop the navigation.
+
+### Jupyter Notebook
 
 You can run the Jupyter Notebook using:
 
