@@ -29,7 +29,7 @@ If you want to run on the car, make sure to:
 1. Connect right pins according to Pin Configurations below
 1. Connect sensors and motor driver to voltage
 
-There are 4 operation modes:
+You can change the macro definition in the beginning of the _main.c_ file to update the operation mode. There are 4 modes:
 
 1. **TEST:**
 	- Ultrasonic sensors can be tested. If the sensor reading is smaller than 15 centimeters, corresponding LED on the Quickstart Board will be turned off.
@@ -43,6 +43,20 @@ There are 4 operation modes:
 1. **DT:**
 	- Press user push button on the Quickstart Board to start autonomous navigation using DT model.
 	- Press it again to stop the navigation.
+
+Each model is implemented in a separate file. You can check and modify them as you like:
+
+1. **Multilayer Perceptron (MLP):** _mlp.c_ and _mlp.h_
+1. **Support Vector Machine (SVM):** _svm.c_ and _svm.h_
+1. **Decision Tree (DT):** _dt.c_ and _dt.h_
+
+You can modify the car's actions by updating below macros in _action.c_ file:
+
+1. **ACTION_FORWARD_MICROSECOND:** Determines how many microseconds the car will go forward for action `Move-Forward` and after taking turns.
+1. **ACTION_SHARP_MICROSECOND:** Determines how many microseconds the car will turn for action `Sharp-Right-Turn`.
+1. **ACTION_SLIGHT_MICROSECOND:** Determines how many microseconds the car will turn for actions `Slight-Right-Turn` and `Slight-Left-Turn`.
+1. **ACTION_FORWARD_SPEED:** Determines the motor PWM duty cycle when moving forward for action `Move-Forward` or after taking turns.
+1. **ACTION_TURN_SPEED:** Determines the motor PWM duty cycle when turning for actions `Sharp-Right-Turn`, `Slight-Right-Turn`, and `Slight-Left-Turn`.
 
 ### Jupyter Notebook
 
