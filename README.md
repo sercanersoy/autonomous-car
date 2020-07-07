@@ -48,7 +48,7 @@ Each model is implemented in a separate file. You can check and modify them as y
 
 1. **Multilayer Perceptron (MLP):** _mlp.c_ and _mlp.h_
 1. **Support Vector Machine (SVM):** _svm.c_ and _svm.h_
-1. **Decision Tree (DT):** _dt.c_ and _dt.h_
+1. **Decision Tree (DT):** _decision_tree.c_ and _decision_tree.h_
 
 You can modify the car's actions by updating below macros in _action.c_ file:
 
