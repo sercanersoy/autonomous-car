@@ -10,7 +10,8 @@ The image on the left shows one of its sensors. We used HC-SR04 ultrasonic senso
 
 Video Presentation: [CMPE492_Presentation](https://drive.google.com/file/d/1v7ZnOM-T5GGkCR1SXHG1gKKqD3_v4xwR/view)  
 Poster: [CMPE492_Poster](https://drive.google.com/file/d/1pslk-dO6079LEf0nyMtstPSZ7mlsOaZ4/view)  
-Navigation Video for MLP Model: [Navigation_Video](https://drive.google.com/file/d/143ThXZ1jeqi1DZZFkX0uSGN1uQVC05_P/view)
+Navigation Video for Decision Tree Model: [DT_Navigation_Video](https://drive.google.com/file/d/143ThXZ1jeqi1DZZFkX0uSGN1uQVC05_P/view)  
+Navigation Video for Multilayer Perceptron Model: [MLP_Navigation_Video](https://drive.google.com/file/d/1v-HxapVsKXBULRPclIe1Kl9lm7KjY6_V/view)
 
 ## How to Run
 
